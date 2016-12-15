@@ -1,7 +1,9 @@
 module.exports = (grunt) ->
-  grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-jison'
 
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
@@ -11,13 +13,29 @@ module.exports = (grunt) ->
       build:
         src: 'd3rr.js'
         dest: 'd3rr.min.js'
+    jison:
+      bnf:
+        options:
+          moduleName: 'grammar_bnf'
+        files:
+          'build/grammar-bnf.js': 'grammars/bnf.jison'
     coffee:
-      'd3rr.js': ['src/grammar.litcoffee', 'src/d3rr.litcoffee']
+      'build/main.js': ['src/parsers.litcoffee', 'src/d3rr.litcoffee']
       options:
         join: true
+        bare: true
         joinExt: '.src.litcoffee'
+    concat:
+      dist:
+        src: ['build/grammar*.js', 'build/main.js']
+        dest: 'd3rr.js'
+      options:
+        banner: 'var d3rr = (function(){'
+        footer: '})()'
     watch:
-      files: 'src/*.litcoffee'
-      tasks: ['coffee', 'uglify']
+      files: ['src/*.litcoffee', 'grammars/*.jison']
+      tasks: ['build']
 
-  grunt.registerTask 'default', ['watch']
+  grunt.registerTask 'build', ['coffee', 'jison', 'concat', 'uglify']
+
+  grunt.registerTask 'default', ['build']
