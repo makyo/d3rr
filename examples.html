@@ -10,7 +10,11 @@
             Hooks = "install", "config-changed", "start", {"config-changed"} "stop"
         </div>
         <div class="d3rr-grammar">
-            Hooks ::= relation-joined relation-changed+ ( relation-departed | relation-broken )
+            Hooks ::= "relation-joined" RelationChanged End
+
+            RelationChanged ::= "relation-changed" | "relation-changed" RelationChanged
+
+            End ::= "relation-broken" | "relation-destroyed"
         </div>
         <!-- <script src="d3rr.min.js"></script> -->
         <script src="d3rr.js"></script>
