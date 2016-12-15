@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>d3rr</title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+    </head>
+    <body>
+        <div class="d3rr-grammar" data-type="ebnf">
+            Hooks = "install", "config-changed", "start", {"config-changed"} "stop"
+        </div>
+        <div class="d3rr-grammar">
+            Hooks ::= relation-joined relation-changed+ ( relation-departed | relation-broken )
+        </div>
+        <!-- <script src="d3rr.min.js"></script> -->
+        <script src="d3rr.js"></script>
+        <script type="text/javascript">
+        new d3rr({}).run();
+        </script>
+    </body>
+</html>

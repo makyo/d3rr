@@ -1,0 +1,26 @@
+{
+  "name": "d3rr",
+  "version": "0.0.1",
+  "description": "Generate railroad diagrams from EBNF directly within your page.",
+  "main": "d3rr.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makyo/d3rr.git"
+  },
+  "author": "Madison Scott-Clary <makyo@drab-makyo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/makyo/d3rr/issues"
+  },
+  "homepage": "https://github.com/makyo/d3rr#readme",
+  "devDependencies": {
+    "coffee-script": "^1.12.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-coffee": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}
